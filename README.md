@@ -1,5 +1,5 @@
-# ttobinary
+# TTOBINARY
 
-## Current Version: v1.0.0
+**Current Version:** v1.0.0
 
 Convert text to binary
