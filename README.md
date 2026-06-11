@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/ttoBinary.png" alt="TTOBINARY Logo" width="140"/>
+  <img src="icon/ttoBinary.png" alt="TTOBINARY Logo" width="140"/>
 </p>
 
 <h1 align="center">TTOBINARY</h1>
