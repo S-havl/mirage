@@ -13,14 +13,12 @@
   <img src="https://img.shields.io/badge/license-GPLv3-green" alt="License">
 </p>
 
----
 
 ## Overview
 
 **TTOBINARY** is a lightweight utility designed to convert plain text into binary representation.  
 It is built to be simple, fast, and easy to use for educational or technical purposes.
 
----
 
 ## Features
 
@@ -29,7 +27,6 @@ It is built to be simple, fast, and easy to use for educational or technical pur
 - Simple and beginner-friendly usage
 - Easily extendable for additional encoding formats
 
----
 
 ## Installation
 
