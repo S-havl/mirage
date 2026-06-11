@@ -2,25 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-void print_string_to_binary(const char *str);
-void create_file_message_binary(const char *message);
-
-int main(void) {
-    char message[500];
-
-    while (1) {
-        printf("Text: ");
-        fgets(message, sizeof(message), stdin);
-
-        message[strcspn(message, "\n")] = '\0';
-
-        print_string_to_binary(message);
-        create_file_message_binary(message);
-    }
-
-    return 0;
-}
-
 void print_string_to_binary(const char *str) {
     while (*str) {
         unsigned char character = *str;
@@ -52,4 +33,20 @@ void create_file_message_binary(const char *message) {
     }
 
     fclose(file);
+}
+
+int main(void) {
+    char message[500];
+
+    while (1) {
+        printf("Text: ");
+        fgets(message, sizeof(message), stdin);
+
+        message[strcspn(message, "\n")] = '\0';
+
+        print_string_to_binary(message);
+        create_file_message_binary(message);
+    }
+
+    return 0;
 }
