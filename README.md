@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/license-GPLv3-green" alt="License">
 </p>
 
+---
 
 ## Overview
 
@@ -30,31 +31,53 @@ It is built to be simple, fast, and easy to use for educational or technical pur
 
 ## Installation
 
-Clone the repository:
+### Prerequisites
+Make sure you have a C compiler (`gcc`) and `make` configured in your environment.
 
-```bash
-git clone https://github.com/S-havl/ttobinary.git
-cd ttobinary
-Execute the compiled `.exe` file to launch the program.
-```
+### Building from Source
+The `Makefile` automatically detects your operating system and builds the appropriate binary (including the application icon on Windows).
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/S-havl/ttobinary.git](https://github.com/S-havl/ttobinary.git)
+   cd ttobinary
+   ```
+
+2. Compile the project:
+   - **On Linux:**
+     ```bash
+     make
+     ```
+   - **On Windows (MinGW / MSYS2):**
+     ```bash
+     mingw32-make
+     ```
+
 
 ## Usage
 
-After installation, execute the application by running the `.exe` file.
+Once compiled, run the generated executable directly from your terminal.
 
-Once started:
-
-- Enter the text you want to convert
-- The program will automatically generate the binary representation
-
-### Example
-
+**On Linux:**
 ```bash
+./ttoBinary
+```
+
+**On Windows:**
+```cmd
+ttoBinary.exe
+```
+
+### Interactive Example
+
+When running the application, simply input your text and press `Enter`:
+
+```text
 Text: Hello World
 0100100001100101011011000110110001101111
 0101011101101111011100100110110001100100
-```
 
-> Output File:  
-> After execution, the program generates a `message.txt` file containing the binary representation of the input text.  
-> The file is stored in the same directory as the executable (`.exe`) and can be used for external processing or reuse.
+-----------------------------------------------------------
+Output File: message.txt (Generated automatically)
+Stored in the same directory for external processing/reuse.
+```
