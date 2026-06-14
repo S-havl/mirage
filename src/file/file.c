@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+void create_file_message_binary(const char *message) {
+    FILE *file;
+
+    file = fopen("message.txt", "w");
+    if (file == NULL) {
+        printf("error");
+        return;
+    }
+
+    for (int i = 0; message[i] != '\0'; i++) {
+        for (int bit = 7; bit >= 0; bit--) {
+            fprintf(file, "%d", (message[i] >> bit) & 1);
+        }
+    }
+
+    fclose(file);
+}
