@@ -1,12 +1,11 @@
 #include <stdio.h>
 
-void create_file_message_binary(const char *message) {
+int create_file_message_binary(const char *message) {
     FILE *file;
 
     file = fopen("message.txt", "w");
     if (file == NULL) {
-        printf("error");
-        return;
+        return 0;
     }
 
     for (int i = 0; message[i] != '\0'; i++) {
@@ -16,4 +15,5 @@ void create_file_message_binary(const char *message) {
     }
 
     fclose(file);
+    return 1;
 }
