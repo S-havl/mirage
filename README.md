@@ -39,7 +39,7 @@ The `Makefile` automatically detects your operating system and builds the approp
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/S-havl/ttobinary.git](https://github.com/S-havl/ttobinary.git)
+   git clone https://github.com/S-havl/ttobinary.git
    cd ttobinary
    ```
 
