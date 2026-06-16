@@ -12,7 +12,9 @@ void app(void) {
             break;
         }
 
-        print_string_to_binary(message);
+        if (!print_string_to_binary(message)) {
+            fprintf(stderr, "Critical error: Could not convert string to binary.\n");
+        }
 
         if (!create_file_message_binary(message)) {
             fprintf(stderr, "Critical error: Could not save the binary file.\n");

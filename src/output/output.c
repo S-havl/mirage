@@ -1,6 +1,10 @@
 #include <stdio.h>
 
-void print_string_to_binary(const char *str) {
+int print_string_to_binary(const char *str) {
+    if (str == NULL) {
+        return 0;
+    }
+
     while (*str) {
         unsigned char character = *str;
 
@@ -13,5 +17,6 @@ void print_string_to_binary(const char *str) {
     }
 
     printf("\n");
+    return 1;
 }
 
