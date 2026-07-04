@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int print_string_to_binary(const char *str) {
+int print_string_to_binary(const char *str)
+{
     if (str == NULL) {
         return 0;
     }

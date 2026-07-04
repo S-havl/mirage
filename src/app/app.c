@@ -3,7 +3,8 @@
 #include "../output/output.h"
 #include "../file/file.h"
 
-void app(void) {
+void app(void)
+{
     char message[MAX_INPUT_SIZE];
 
     while (1) {

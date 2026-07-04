@@ -1,6 +1,7 @@
 #include "app/app.h"
 
-int main(void) {
+int main(void)
+{
     app();
     return 0;
 }

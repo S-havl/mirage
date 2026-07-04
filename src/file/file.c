@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int create_file_message_binary(const char *message) {
+int create_file_message_binary(const char *message)
+{
     FILE *file;
 
     file = fopen("message.txt", "w");
