@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="icon/ttoBinary.png" alt="TTOBINARY Logo" width="140"/>
+  <img src="icon/ttoBinary.png" alt="MIRAGE Logo" width="140"/>
 </p>
 
-<h1 align="center">TTOBINARY</h1>
+<h1 align="center">MIRAGE</h1>
 
 <p align="center">
   <b>Convert text into binary</b>
@@ -17,7 +17,7 @@
 
 ## Overview
 
-**TTOBINARY** is a lightweight utility designed to convert plain text into binary representation.  
+**MIRAGE** is a lightweight utility designed to convert plain text into binary representation.  
 It is built to be simple, fast, and easy to use for educational or technical purposes.
 
 
@@ -39,8 +39,8 @@ The `Makefile` automatically detects your operating system and builds the approp
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/S-havl/ttobinary.git
-   cd ttobinary
+   git clone https://github.com/S-havl/mirage.git
+   cd mirage
    ```
 
 2. Compile the project:
@@ -60,12 +60,12 @@ Once compiled, run the generated executable directly from your terminal.
 
 **On Linux:**
 ```bash
-./ttoBinary
+./mirage
 ```
 
 **On Windows:**
 ```cmd
-ttoBinary.exe
+mirage.exe
 ```
 
 ### Interactive Example
