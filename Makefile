@@ -6,12 +6,12 @@ BUILD_DIR := build
 RESOBJ := $(BUILD_DIR)/icon.o
 
 ifeq ($(OS),Windows_NT)
-	TARGET := ttoBinary.exe
+	TARGET := mirage.exe
 	WINDRES := windres
 	RC := icon/icon.rc
 	EXTRA_OBJS := $(RESOBJ)
 else
-	TARGET := ttoBinary
+	TARGET := mirage
 	EXTRA_OBJS := 
 endif
 
@@ -27,7 +27,7 @@ $(TARGET): $(SRC) $(EXTRA_OBJS) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -rf $(BUILD_DIR) ttoBinary ttoBinary.exe
+	rm -rf $(BUILD_DIR) mirage mirage.exe
 
 rebuild: clean all
 
