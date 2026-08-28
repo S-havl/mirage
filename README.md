@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon/ttoBinary.png" alt="MIRAGE Logo" width="140"/>
+  <img src="icon/mirage.png" alt="MIRAGE Logo" width="140"/>
 </p>
 
 <h1 align="center">MIRAGE</h1>
