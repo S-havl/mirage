@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "input.h"
+#include <input/input.h>
 
 int get_user_input(char *buffer, size_t size)
 {

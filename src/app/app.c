@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../input/input.h"
-#include "../output/output.h"
-#include "../file/file.h"
+#include <input/input.h>
+#include <output/output.h>
+#include <file/file.h>
 
 void app(void)
 {
