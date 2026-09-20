@@ -1,24 +1,50 @@
 #include <stdio.h>
-#include <input/input.h>
-#include <output/output.h>
-#include <file/file.h>
+#include <app/app.h>
+#include <convert/convert.h>
 
-void app(void)
+appState_t app(appState_t current_state)
 {
-    char message[MAX_INPUT_SIZE];
+    int option = 0;
 
-    while (1) {
-        printf("Text: ");
-        if (!get_user_input(message, sizeof(message))) {
-            break;
-        }
+    switch (current_state) {
 
-        if (!print_string_to_binary(message)) {
-            fprintf(stderr, "Critical error: Could not convert string to binary.\n");
-        }
+        case STATE_MENU:
+            printf("\n=== MIRAGE CLI ===\n");
+            printf("1. Convert text to binary\n");
+            printf("2. Encode text\n");
+            printf("3. Decode text\n");
+            printf("4. Exit\n");
+            printf("Select an option: ");
 
-        if (!create_file_message_binary(message)) {
-            fprintf(stderr, "Critical error: Could not save the binary file.\n");
-        }
+            if (scanf("%d", &option) != 1) {
+                while (getchar() != '\n');
+                printf("Invalid option.\n");
+                return STATE_MENU;
+            }
+            while (getchar() != '\n');
+
+            if (option == 1) return STATE_CONVERT;
+            if (option == 2) return STATE_ENCODE;
+            if (option == 3) return STATE_DECODE;
+            if (option == 4) return STATE_EXIT;
+
+            printf("Invalid option. Try again.\n");
+            return STATE_MENU;
+
+	case STATE_CONVERT:
+            convert_text_to_binary();
+            return STATE_MENU;
+
+	case STATE_ENCODE:
+
+
+        case STATE_DECODE:
+
+
+	case STATE_EXIT:
+
+
     }
+
+    return STATE_MENU;
 }
