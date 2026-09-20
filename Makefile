@@ -1,7 +1,7 @@
 CC := gcc
 CFLAGS := -O2 -Wall -Wextra -Iinclude
 
-SRC := src/main.c src/app/app.c src/input/input.c src/output/output.c src/file/file.c src/convert/convert.c
+SRC := src/main.c src/app/app.c src/convert/convert.c
 BUILD_DIR := build
 RESOBJ := $(BUILD_DIR)/icon.o
 
