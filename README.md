@@ -72,14 +72,17 @@ mirage.exe
 
 ### Interactive Example
 
-When running the application, simply input your text and press `Enter`:
+When running the application, simply input your option and press `Enter`:
 
 ```text
-Text: Hello World
-0100100001100101011011000110110001101111
-0101011101101111011100100110110001100100
+=== MIRAGE CLI ===
+1. Convert text to binary
+2. Encode text
+3. Decode text
+4. Exit
+Select an option:
 
 -----------------------------------------------------------
-Output File: message.txt (Generated automatically)
+(convert option) Output File: message.txt (Generated automatically)
 Stored in the same directory for external processing/reuse.
 ```
