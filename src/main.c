@@ -4,11 +4,12 @@
 int main(void)
 {
     appState_t current_state = STATE_MENU;
-    int option = 0;
 
     while (current_state != STATE_EXIT) {
-        app();
+        current_state = app(current_state);
     }
+
+    printf("Leaving Mirage. Goodbye\n");
 
     return 0;
 }

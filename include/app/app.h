@@ -2,9 +2,10 @@
 
 typedef enum {
     STATE_MENU,
+    STATE_CONVERT,
     STATE_ENCODE,
     STATE_DECODE,
     STATE_EXIT
 } appState_t;
 
-void app(void);
+appState_t app(appState_t current_state);
