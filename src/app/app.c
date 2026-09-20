@@ -31,17 +31,17 @@ appState_t app(appState_t current_state)
             printf("Invalid option. Try again.\n");
             return STATE_MENU;
 
-	case STATE_CONVERT:
+        case STATE_CONVERT:
             convert_text_to_binary();
             return STATE_MENU;
 
-	case STATE_ENCODE:
+        case STATE_ENCODE:
 
 
         case STATE_DECODE:
 
 
-	case STATE_EXIT:
+        case STATE_EXIT:
 
 
     }
