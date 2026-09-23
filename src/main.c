@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <app/app.h>
+#include <stdio.h>
 
 int main(void)
 {

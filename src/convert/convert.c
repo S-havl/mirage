@@ -3,7 +3,7 @@
 
 #define MAX_INPUT_SIZE 1000
 
-static int get_user_input(char *buffer, size_t size)
+static int get_user_input(char* buffer, size_t size)
 {
     if (fgets(buffer, size, stdin) == NULL) {
         return 0;
@@ -12,7 +12,7 @@ static int get_user_input(char *buffer, size_t size)
     return 1;
 }
 
-static int print_string_to_binary(const char *str)
+static int print_string_to_binary(const char* str)
 {
     if (str == NULL) {
         return 0;
@@ -33,9 +33,9 @@ static int print_string_to_binary(const char *str)
     return 1;
 }
 
-static int create_file_message_binary(const char *message)
+static int create_file_message_binary(const char* message)
 {
-    FILE *file;
+    FILE* file;
 
     file = fopen("message.txt", "w");
     if (file == NULL) {
