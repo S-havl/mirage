@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include <app/app.h>
 #include <convert/convert.h>
+#include <stdio.h>
 
 appState_t app(appState_t current_state)
 {
@@ -17,16 +17,22 @@ appState_t app(appState_t current_state)
             printf("Select an option: ");
 
             if (scanf("%d", &option) != 1) {
-                while (getchar() != '\n');
+                while (getchar() != '\n')
+                    ;
                 printf("Invalid option.\n");
                 return STATE_MENU;
             }
-            while (getchar() != '\n');
+            while (getchar() != '\n')
+                ;
 
-            if (option == 1) return STATE_CONVERT;
-            if (option == 2) return STATE_ENCODE;
-            if (option == 3) return STATE_DECODE;
-            if (option == 4) return STATE_EXIT;
+            if (option == 1)
+                return STATE_CONVERT;
+            if (option == 2)
+                return STATE_ENCODE;
+            if (option == 3)
+                return STATE_DECODE;
+            if (option == 4)
+                return STATE_EXIT;
 
             printf("Invalid option. Try again.\n");
             return STATE_MENU;
@@ -37,13 +43,9 @@ appState_t app(appState_t current_state)
 
         case STATE_ENCODE:
 
-
         case STATE_DECODE:
 
-
         case STATE_EXIT:
-
-
     }
 
     return STATE_MENU;
