@@ -1,5 +1,7 @@
 #include <app/app.h>
 #include <convert/convert.h>
+#include <cypher/decode.h>
+#include <cypher/encode.h>
 #include <stdio.h>
 
 appState_t app(appState_t current_state)
@@ -42,8 +44,12 @@ appState_t app(appState_t current_state)
             return STATE_MENU;
 
         case STATE_ENCODE:
+            encode_text();
+            return STATE_MENU;
 
         case STATE_DECODE:
+            decode_text();
+            return STATE_MENU;
 
         case STATE_EXIT:
     }
