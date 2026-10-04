@@ -1,0 +1,22 @@
+name: Build and test Mirage
+run-name: ${{ github.actor }} is testing Mirage.
+on: [push]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code checkout
+      - uses: actions/checkout@v4
+
+      - name: Compile with Makefile
+      - run: make
+
+      - name: Execute binary
+      - run: |
+          ./mirage &
+          PID=$!
+          sleep 3
+          kill -0 $PID || (echo "Mirage crashed prematurely" && exit 1)
+          kill $PID
