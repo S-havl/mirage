@@ -8,13 +8,13 @@ jobs:
 
     steps:
       - name: Code checkout
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Compile with Makefile
-      - run: make
+        run: make
 
       - name: Execute binary
-      - run: |
+        run: |
           ./mirage &
           PID=$!
           sleep 3
