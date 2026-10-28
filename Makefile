@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -O2 -Wall -Wextra -Iinclude
-SRC := src/main.c
+SRC := src/main.c src/core/core.c src/console/console.c
 BUILD_DIR := build
 TARGET := mirage
 

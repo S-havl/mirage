@@ -1,10 +1,12 @@
+#include <core/core.h>
+
 #include <stdio.h>
 
 int main(void)
 {
     int ret = 0;
 
-    printf("Hello World!\n");
+    print_banner();
 
     return ret;
 }
