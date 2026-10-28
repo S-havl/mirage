@@ -1,1 +1,9 @@
 #pragma once
+
+#define SCAPE_ANSI_RESET "\033[0m"
+#define SCAPE_ANSI_BOLD "\033[1m"
+#define SCAPE_ANSI_DIM "\033[2m"
+#define SCAPE_ANSI_UNDERLINE "\033[4m"
+
+#define SCAPE_ANSI_UNDERLINE_BLUE "\033[4;38;2;20;90;180m"
+#define SCAPE_ANSI_COLOR_PURPLE "\033[38;2;115;30;245m"
