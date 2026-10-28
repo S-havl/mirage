@@ -1,31 +1,17 @@
 CC := gcc
 CFLAGS := -O2 -Wall -Wextra -Iinclude
-
-SRC := src/main.c src/app/app.c src/convert/convert.c src/cypher/decode.c src/cypher/encode.c
+SRC := src/main.c
 BUILD_DIR := build
-RESOBJ := $(BUILD_DIR)/icon.o
+TARGET := mirage
 
-FORMAT_FILES := $(shell find . -type d -name '$(BUILD)' -prune -false -o -type f \( -name '*.c' -o -name '*.h' \))
-
-ifeq ($(OS),Windows_NT)
-	TARGET := mirage.exe
-	WINDRES := windres
-	RC := icon/icon.rc
-	EXTRA_OBJS := $(RESOBJ)
-else
-	TARGET := mirage
-	EXTRA_OBJS := 
-endif
+FORMAT_FILES := $(shell find . -path './$(BUILD_DIR)' -prune -o -type f \( -name '*.c' -o -name '*.h' \) -print)
 
 all: $(BUILD_DIR) $(TARGET)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(RESOBJ): $(RC) | $(BUILD_DIR)
-	$(WINDRES) $< -O coff -o $@
-
-$(TARGET): $(SRC) $(EXTRA_OBJS) | $(BUILD_DIR)
+$(TARGET): $(SRC) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $^ -o $@
 
 format:
@@ -33,7 +19,7 @@ format:
 	@clang-format -i $(FORMAT_FILES)
 
 clean:
-	rm -rf $(BUILD_DIR) mirage mirage.exe
+	rm -rf $(BUILD_DIR) $(TARGET) $(TARGET).exe
 
 rebuild: clean all
 
