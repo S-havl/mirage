@@ -1,15 +1,10 @@
-#include <app/app.h>
 #include <stdio.h>
 
 int main(void)
 {
-    appState_t current_state = STATE_MENU;
+    int ret = 0;
 
-    while (current_state != STATE_EXIT) {
-        current_state = app(current_state);
-    }
+    printf("Hello World!\n");
 
-    printf("Leaving Mirage. Goodbye\n");
-
-    return 0;
+    return ret;
 }
