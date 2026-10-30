@@ -9,6 +9,8 @@
 
 MIRAGE is an offensive hacking framework written purely in C (Under development).
 
+![](images/mirage-menu.png)
+
 # License
 
 GNU General Public License v3.0
