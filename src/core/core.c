@@ -62,15 +62,29 @@ void start_framework(void)
                     printf(SCAPE_ANSI_COLOR_RED "[*] Leaving Mirage...\n" SCAPE_ANSI_RESET);
                     return;
                 } else if (strcmp(input_cmd, "help") == 0) {
-                    printf(SCAPE_ANSI_COLOR_CYAN "Main commands:\n" SCAPE_ANSI_RESET);
+                    printf(SCAPE_ANSI_COLOR_CYAN "[*] Main commands:\n" SCAPE_ANSI_RESET);
                     printf(SCAPE_ANSI_COLOR_CYAN "use <module>" SCAPE_ANSI_RESET
                                                  "   - Select a module\n");
                     printf(SCAPE_ANSI_COLOR_CYAN "help" SCAPE_ANSI_RESET
                                                  "           - Show this help\n");
+                    printf(SCAPE_ANSI_COLOR_CYAN "clear" SCAPE_ANSI_RESET
+                                                 "          - Clear screen\n");
                     printf(SCAPE_ANSI_COLOR_CYAN "exit" SCAPE_ANSI_RESET
                                                  "           - Leave Mirage\n");
+                } else if (strcmp(input_cmd, "clear") == 0) {
+                    print_banner();
                 } else if (strcmp(input_cmd, "use") == 0) {
-                    // unused
+                    char* module_argument = strtok(NULL, " ");
+                    if (module_argument != NULL) {
+                        printf(SCAPE_ANSI_COLOR_GREEN
+                               "[+] Entering the module:" SCAPE_ANSI_COLOR_GREEN_BOLD
+                               " %s\n" SCAPE_ANSI_RESET,
+                               module_argument);
+                        current_framework_state = STATE_FRAMEWORK_MODULE_ACTIVE;
+                    } else {
+                        printf(SCAPE_ANSI_COLOR_RED "[-] Usage:" SCAPE_ANSI_RESET
+                                                    " use <module_name>\n");
+                    }
                 } else {
                     printf(SCAPE_ANSI_COLOR_RED "[-] Unknown command: " SCAPE_ANSI_COLOR_CYAN
                                                 "%s. " SCAPE_ANSI_RESET "Type 'help'.\n",
@@ -83,15 +97,21 @@ void start_framework(void)
                     printf(SCAPE_ANSI_COLOR_RED "[*] Leaving the module...\n" SCAPE_ANSI_RESET);
                     current_framework_state = STATE_ROOT;
                 } else if (strcmp(input_cmd, "help") == 0) {
-                    printf(SCAPE_ANSI_COLOR_CYAN "Module commands:\n" SCAPE_ANSI_RESET);
+                    printf(SCAPE_ANSI_COLOR_CYAN "[*] Module commands:\n" SCAPE_ANSI_RESET);
                     printf(SCAPE_ANSI_COLOR_CYAN "back" SCAPE_ANSI_RESET
                                                  "   - Return to the main menu\n");
                     printf(SCAPE_ANSI_COLOR_CYAN "run" SCAPE_ANSI_RESET
                                                  "    - Execute the module action\n");
+                    printf(SCAPE_ANSI_COLOR_CYAN "clear" SCAPE_ANSI_RESET "    - Clear screen\n");
+                } else if (strcmp(input_cmd, "clear") == 0) {
+                    print_banner();
                 } else if (strcmp(input_cmd, "run") == 0) {
-                    // unused
+                    printf(SCAPE_ANSI_COLOR_GREEN "[+] Executing the module...\n" SCAPE_ANSI_RESET);
                 } else {
-                    // unused
+                    printf(SCAPE_ANSI_COLOR_RED
+                           "[-] Unknown command in module:" SCAPE_ANSI_COLOR_CYAN
+                           " %s\n" SCAPE_ANSI_RESET,
+                           input_cmd);
                 }
                 break;
         }
