@@ -59,9 +59,41 @@ void start_framework(void)
         switch (current_framework_state) {
             case STATE_ROOT:
                 if (strcmp(input_cmd, "exit") == 0) {
-                    printf(SCAPE_ANSI_COLOR_RED "Leaving Mirage...\n" SCAPE_ANSI_RESET);
+                    printf(SCAPE_ANSI_COLOR_RED "[*] Leaving Mirage...\n" SCAPE_ANSI_RESET);
                     return;
+                } else if (strcmp(input_cmd, "help") == 0) {
+                    printf(SCAPE_ANSI_COLOR_CYAN "Main commands:\n" SCAPE_ANSI_RESET);
+                    printf(SCAPE_ANSI_COLOR_CYAN "use <module>" SCAPE_ANSI_RESET
+                                                 "   - Select a module\n");
+                    printf(SCAPE_ANSI_COLOR_CYAN "help" SCAPE_ANSI_RESET
+                                                 "           - Show this help\n");
+                    printf(SCAPE_ANSI_COLOR_CYAN "exit" SCAPE_ANSI_RESET
+                                                 "           - Leave Mirage\n");
+                } else if (strcmp(input_cmd, "use") == 0) {
+                    // unused
+                } else {
+                    printf(SCAPE_ANSI_COLOR_RED "[-] Unknown command: " SCAPE_ANSI_COLOR_CYAN
+                                                "%s. " SCAPE_ANSI_RESET "Type 'help'.\n",
+                           input_cmd);
                 }
+                break;
+
+            case STATE_FRAMEWORK_MODULE_ACTIVE:
+                if (strcmp(input_cmd, "back") == 0) {
+                    printf(SCAPE_ANSI_COLOR_RED "[*] Leaving the module...\n" SCAPE_ANSI_RESET);
+                    current_framework_state = STATE_ROOT;
+                } else if (strcmp(input_cmd, "help") == 0) {
+                    printf(SCAPE_ANSI_COLOR_CYAN "Module commands:\n" SCAPE_ANSI_RESET);
+                    printf(SCAPE_ANSI_COLOR_CYAN "back" SCAPE_ANSI_RESET
+                                                 "   - Return to the main menu\n");
+                    printf(SCAPE_ANSI_COLOR_CYAN "run" SCAPE_ANSI_RESET
+                                                 "    - Execute the module action\n");
+                } else if (strcmp(input_cmd, "run") == 0) {
+                    // unused
+                } else {
+                    // unused
+                }
+                break;
         }
     }
 }
