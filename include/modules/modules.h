@@ -1,4 +1,8 @@
 #pragma once
 
-typedef struct framework_context {
-} framework_context_t;
+#define LOADED_MODULES 0
+
+typedef struct module_descriptor {
+    char module_name[64];
+    void (*module_function)(void);
+} module_descriptor_t;
