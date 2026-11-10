@@ -1,9 +1,12 @@
 #pragma once
 
+#include <modules/modules.h>
+
 typedef enum framework_state { STATE_ROOT, STATE_FRAMEWORK_MODULE_ACTIVE } framework_state_t;
 
 typedef struct framework_context {
-    framework_state_t current_state;
+    framework_state_t    current_state;
+    module_descriptor_t* active_module;
 } framework_context_t;
 
 void print_banner(void);

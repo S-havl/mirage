@@ -1,5 +1,6 @@
 #include <console/console.h>
 #include <core/core.h>
+#include <modules/modules.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -30,16 +31,18 @@ void print_banner(void)
 
 void start_framework(void)
 {
-    framework_state_t current_framework_state = STATE_ROOT;
-    char              input[MAX_INPUT_SIZE];
+    char input[MAX_INPUT_SIZE];
+
+    framework_context_t framework_context = {.current_state = STATE_ROOT};
 
     while (1) {
-        switch (current_framework_state) {
+        switch (framework_context.current_state) {
             case STATE_ROOT:
                 printf(SCAPE_ANSI_UNDERLINE_BLUE "mirage" SCAPE_ANSI_RESET " > ");
                 break;
             case STATE_FRAMEWORK_MODULE_ACTIVE:
-                printf(SCAPE_ANSI_UNDERLINE_BLUE "module name" SCAPE_ANSI_RESET " > ");
+                printf(SCAPE_ANSI_UNDERLINE_BLUE "%s" SCAPE_ANSI_RESET " > ",
+                       framework_context.active_module->module_name);
                 break;
         }
         fflush(stdout);
@@ -56,7 +59,7 @@ void start_framework(void)
         if (input_cmd == NULL)
             continue;
 
-        switch (current_framework_state) {
+        switch (framework_context.current_state) {
             case STATE_ROOT:
                 if (strcmp(input_cmd, "exit") == 0) {
                     printf(SCAPE_ANSI_COLOR_RED "[*] Leaving Mirage...\n" SCAPE_ANSI_RESET);
@@ -76,11 +79,21 @@ void start_framework(void)
                 } else if (strcmp(input_cmd, "use") == 0) {
                     char* module_argument = strtok(NULL, " ");
                     if (module_argument != NULL) {
-                        printf(SCAPE_ANSI_COLOR_GREEN
-                               "[+] Entering the module:" SCAPE_ANSI_COLOR_GREEN_BOLD
-                               " %s\n" SCAPE_ANSI_RESET,
-                               module_argument);
-                        current_framework_state = STATE_FRAMEWORK_MODULE_ACTIVE;
+                        module_descriptor_t* module = search_for_module(module_argument);
+                        if (module != NULL) {
+                            framework_context.current_state = STATE_FRAMEWORK_MODULE_ACTIVE;
+                            framework_context.active_module = module;
+
+                            printf(SCAPE_ANSI_COLOR_GREEN
+                                   "[+] Entering the module:" SCAPE_ANSI_COLOR_GREEN_BOLD
+                                   " %s\n" SCAPE_ANSI_RESET,
+                                   framework_context.active_module->module_name);
+                        } else {
+                            printf(SCAPE_ANSI_COLOR_RED
+                                   "[-] Module not found:" SCAPE_ANSI_COLOR_RED_BOLD
+                                   " %s\n" SCAPE_ANSI_RESET,
+                                   module_argument);
+                        }
                     } else {
                         printf(SCAPE_ANSI_COLOR_RED "[-] Usage:" SCAPE_ANSI_RESET
                                                     " use <module_name>\n");
@@ -95,7 +108,8 @@ void start_framework(void)
             case STATE_FRAMEWORK_MODULE_ACTIVE:
                 if (strcmp(input_cmd, "back") == 0) {
                     printf(SCAPE_ANSI_COLOR_RED "[*] Leaving the module...\n" SCAPE_ANSI_RESET);
-                    current_framework_state = STATE_ROOT;
+                    framework_context.current_state = STATE_ROOT;
+                    framework_context.active_module = NULL;
                 } else if (strcmp(input_cmd, "help") == 0) {
                     printf(SCAPE_ANSI_COLOR_CYAN "[*] Module commands:\n" SCAPE_ANSI_RESET);
                     printf(SCAPE_ANSI_COLOR_CYAN "back" SCAPE_ANSI_RESET
@@ -106,7 +120,16 @@ void start_framework(void)
                 } else if (strcmp(input_cmd, "clear") == 0) {
                     print_banner();
                 } else if (strcmp(input_cmd, "run") == 0) {
-                    printf(SCAPE_ANSI_COLOR_GREEN "[+] Executing the module...\n" SCAPE_ANSI_RESET);
+                    if (framework_context.active_module != NULL &&
+                        framework_context.active_module->module_function != NULL) {
+                        printf(SCAPE_ANSI_COLOR_GREEN
+                               "[+] Executing the module...\n" SCAPE_ANSI_RESET);
+                        framework_context.active_module->module_function();
+                    } else {
+                        printf(
+                            SCAPE_ANSI_COLOR_RED
+                            "[-] No executable function found for this module.\n" SCAPE_ANSI_RESET);
+                    }
                 } else {
                     printf(SCAPE_ANSI_COLOR_RED
                            "[-] Unknown command in module:" SCAPE_ANSI_COLOR_CYAN
