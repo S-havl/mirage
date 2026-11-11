@@ -30,7 +30,7 @@ void print_banner(void)
     printf(SCAPE_ANSI_RESET "\n");
 }
 
-void handle_root_command(framework_context_t* framework_context, const char* input_cmd)
+static void handle_root_command(framework_context_t* framework_context, const char* input_cmd)
 {
     if (strcmp(input_cmd, "exit") == 0) {
         printf(SCAPE_ANSI_COLOR_RED "[*] Leaving Mirage...\n" SCAPE_ANSI_RESET);
@@ -69,7 +69,7 @@ void handle_root_command(framework_context_t* framework_context, const char* inp
     }
 }
 
-void handle_module_command(framework_context_t* framework_context, const char* input_cmd)
+static void handle_module_command(framework_context_t* framework_context, const char* input_cmd)
 {
     if (strcmp(input_cmd, "back") == 0) {
         printf(SCAPE_ANSI_COLOR_RED "[*] Leaving the module...\n" SCAPE_ANSI_RESET);
