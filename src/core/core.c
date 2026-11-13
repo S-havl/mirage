@@ -24,7 +24,8 @@ void print_banner(void)
     printf("║   ╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝          ║\n");
     printf("║                                                            ║\n");
     printf("║   [*] Offensive Hacking Framework                          ║\n");
-    printf("║   [*] Loaded Modules: 0                                    ║\n");
+    printf("║   [*] Loaded Modules: %-5zu                                ║\n",
+           get_total_loaded_modules());
     printf("╚════════════════════════════════════════════════════════════╝\n");
 
     printf(SCAPE_ANSI_RESET "\n");
