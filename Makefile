@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -O2 -Wall -Wextra -Iinclude
-SRC := src/main.c src/core/core.c src/modules/modules.c src/modules/recon/test/test.c
+SRC := src/main.c src/core/core.c src/modules/modules.c modules/net/spoof/arp_mitm/arp_mitm.c
 BUILD_DIR := build
 TARGET := mirage
 
