@@ -69,6 +69,78 @@ make run
 >[!TIP]
 > Once inside the interactive prompt, run `help` to inspect available commands at the root or within any active module.
 
+## Contributing
+
+The primary way to contribute to Mirage is by developing modules for the framework in accordance with this guide.
+
+Mirage is built around four core principles: zero external dependencies, minimalism, complete functionality, and ergonomics. All contributed modules must align with this philosophy and maintain consistency across the codebase.
+
+> Authorized Use Notice: Mirage is intended for security research, network diagnostics, and authorized testing environments. Only run or test modules against systems and networks you own or have explicit permission to assess.
+
+### Requirements and Environment
+
+To keep the framework self-contained and free of external dependencies, Mirage relies on standard Linux build tooling:
+
+- `gcc`: C compiler used to build the framework and its modules.
+- `make`: Build automation tool used to compile the project and apply formatting rules.
+- Linux environment: Mirage targets Linux natively. Cross-compilation for Windows is not currently implemented, though contributions adding cross-compilation support or Windows-compatible modules are welcome.
+
+### Code Style and Conventions
+
+- Formatting: You may design your module's internal engineering and architecture as you see fit, provided you run `make format` before finishing so your code matches the repository's formatting standard.
+- Code hygiene: Avoid compiler warnings, validate system and socket calls, and clean up allocated resources or file descriptors on both success and error paths.
+- Console colors: CLI and TUI output must use the color definitions in `include/console/console.h` so every module remains visually consistent with the rest of Mirage.
+- Log prefixes: Standard output and status messages must strictly use these prefixes:
+  - `[*]`: Info / status
+  - `[+]`: Success
+  - `[-]`: Error / failure
+  - `[!]`: Warning / alert
+  - `[?]`: Prompt / question
+- Entry point: You are free to organize your module directory—including local documentation or helper files—as long as the module's entry-point function is not named `main` and takes `void` while returning `void`.
+
+### Module Layout
+
+Place your module under `modules/` using the following directory structure:
+
+modules/
+└── <category>/
+    └── <subcategory>/
+        └── <module_name>/
+            └── <module_source>.c
+
+Example:
+
+modules/net/spoof/arp_mitm/arp_mitm.c
+
+### Registering Your Module
+
+To expose your module within Mirage, declare its entry-point function and register it in `src/modules/modules.c`:
+
+// In src/modules/modules.c
+// Declare the module entry point with `extern` (must take `void` and return `void`).
+extern void arp_mitm(void);
+
+static module_descriptor_t registered_modules[] = {
+    {
+        .module_name = "net/spoof/arp_mitm",
+        .module_function = arp_mitm
+    }
+};
+
+### Workflow and Pre-Submission Checklist
+
+1. Create a focused branch from the main development branch for your feature or fix.
+2. Implement the module following Mirage's conventions and keep commits clear and scoped.
+3. Run `make format` and verify that the project builds cleanly with `make`.
+4. Submit a Pull Request explaining what the module does, how you tested it, and any limitations.
+
+Quick checklist before submitting:
+- [ ] No external dependencies added.
+- [ ] Placed under `modules/<category>/<subcategory>/<module_name>/` with a non-`main` `void fn(void)` entry point.
+- [ ] Registered in `src/modules/modules.c` and compiled with `make`.
+- [ ] Formatted with `make format` with clean resource handling.
+- [ ] Uses `include/console/console.h` colors and `[*]`, `[+]`, `[-]`, `[!]`, `[?]` log prefixes.
+
 # License
 
 GNU General Public License v3.0
