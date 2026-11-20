@@ -101,12 +101,13 @@ To keep the framework self-contained and free of external dependencies, Mirage r
 ### Module Layout
 
 Place your module under `modules/` using the following directory structure:
-
+```
 modules/
 └── <category>/
     └── <subcategory>/
         └── <module_name>/
             └── <module_source>.c
+```
 
 Example:
 
@@ -115,7 +116,7 @@ modules/net/spoof/arp_mitm/arp_mitm.c
 ### Registering Your Module
 
 To expose your module within Mirage, declare its entry-point function and register it in `src/modules/modules.c`:
-
+```c
 // In src/modules/modules.c
 // Declare the module entry point with `extern` (must take `void` and return `void`).
 extern void arp_mitm(void);
@@ -126,6 +127,7 @@ static module_descriptor_t registered_modules[] = {
         .module_function = arp_mitm
     }
 };
+```
 
 ### Workflow and Pre-Submission Checklist
 
