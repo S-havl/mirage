@@ -3,10 +3,10 @@
 #include <stddef.h>
 #include <string.h>
 
-extern void arp_mitm(void);
+// extern void arp_mitm(void);
 
 static module_descriptor_t registered_modules[] = {
-    {.module_name = "net/spoof/arp_mitm", .module_function = arp_mitm}};
+    {.module_name = "net/spoof/arp_mitm", .module_function = NULL}};
 
 size_t get_total_loaded_modules(void)
 {
