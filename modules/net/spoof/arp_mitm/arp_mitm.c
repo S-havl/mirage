@@ -1,3 +1,4 @@
+/*
 #include <arpa/inet.h>
 #include <linux/if_ether.h>
 #include <linux/if_packet.h>
@@ -103,3 +104,4 @@ void arp_mitm(void)
     close(raw_socketfd);
     printf("[+] Socket closed successfully.\n");
 }
+*/
